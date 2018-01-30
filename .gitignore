@@ -1,0 +1,25 @@
+# Mac
+*.DS_Store
+
+# LaTeX
+*.latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+*.aux
+*.lot
+*.lof
+*.log
+*.fdb_latexmk
+
+# Android
+*.iml
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/.idea/tasks.xml
+/.idea/gradle.xml
+/build
+/captures
+*.externalNativeBuild
