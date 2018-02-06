@@ -1,0 +1,176 @@
+\documentclass[12pt, titlepage, a4paper]{article}
+    \usepackage[utf8x]{inputenc}
+    \usepackage[english]{babel}
+    \usepackage[a4paper, top=3cm, bottom=2cm, left=3cm, right=3cm, marginparwidth=1.75cm]{geometry}
+    \usepackage[table]{xcolor}
+    \usepackage{float}
+    \usepackage[colorlinks=true, allcolors=dark-gray]{hyperref}
+    \usepackage[normalem]{ulem}
+    \usepackage{fancyhdr}
+    \usepackage{fancyhdr}
+    \fancyhead[L]{\today\ }
+    \fancyhead[C]{SRS}
+    \fancyhead[R]{Group 5}
+    \pagestyle{fancy}
+
+\title{Software Requirements Specification: Revision 0}
+\author{Group 5 \\
+            \\ Lu, Daniel - lud1  - 400015933
+            \\ Abujarad, Razan - abujarar  - 400038238
+            \\ Panunto, Michael - panuntom - 400022970
+            \\ Samarasinghe, Sachin - samarya - 001430998
+            \\ Bengezi, Mohamed - bengezim - 400021279 \\
+            \\ Professor: Dr. Kehdri
+            \\ Tutorial: T02}
+
+\begin{document}
+% Options to be used by the tables
+\setlength{\arrayrulewidth}{1.5pt}
+\definecolor{light-gray}{gray}{0.93}
+\definecolor{dark-gray}{gray}{0.25}
+\newcounter{stepnum}
+
+\maketitle
+\newpage
+
+\pagenumbering{roman}
+
+{\centering
+\tableofcontents\par
+}
+\addtocontents{toc}{\protect\vspace{2.5em}}
+
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+\label{sec:introduction}
+% Begin Section
+
+This section of the SRS should provide an overview of the entire SRS.
+
+\subsection{Purpose}
+\label{sub:purpose}
+\tab This SRS describes both the functional and non-functional requirements necessary for the system-to-be. Specifically, this document is intended for users or any parties interested in the BookZilla application. The objective is to allow potential users and stakeholders to gain insight into the main goals of the application, as well as the thought process behind it. This document aims to describe all the functionalities, necessary requirements, constraints, dependencies, and any other topics that may be of importance to the development of the application.
+
+\subsection{Scope}
+\label{sub:scope}
+\tab BookZilla is a recognition application that allows users to find books that they may have forgotten about, or simply to help them discover new books. It is designed for the Android platform. The application will take various user inputs, such as genre, theme, or description, and uses a separate expert for each one of these inputs. Using these experts, the application determines a list of books that each expert agrees on. This application has numerous benefits. For example, it has the potential to assist an individual in finally remembering the name of the marvelous book they once read some time ago. As stated above, it also could help in discovering new books, since it outputs a list of books. The goal of BookZilla is to be as accurate as possible with the given inputs, in order to fully realize these stated benefits.
+% End SubSection
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\label{sub:definitions_acronyms_and_abbreviations}
+% Begin SubSection
+\begin{table}[H]
+    \begin{center}
+        \rowcolors{1}{white}{light-gray}
+        \begin{tabular}{| p{0.30\linewidth} | p{0.70\linewidth} |}
+            \hline
+            \textbf{Term} & \textbf{Definition}\\
+            \hline
+            User & An individual who interacts with the application in any way \\
+            Stakeholder & Individuals with an interest or concern in the application \\
+            API & (Application Programming interface) Set of subroutines used to assist in the completion of tasks within the application\\
+            Query & A request for data or information from a database \\
+            Properties of a Book & \\
+            \hline
+        \end{tabular}
+        \caption{Definitions} \label{tab:Defs}
+    \end{center}
+\end{table}
+% End SubSection
+
+\subsection{References}
+\label{sub:references}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Provide a complete list of all documents referenced elsewhere in the SRS
+	\item Identify each document by title, report number (if applicable), date, and publishing organization
+	\item Specify the sources from which the references can be obtained
+\end{enumerate}
+% End SubSection
+
+\subsection{Overview}
+\label{sub:overview}
+% Begin SubSection
+The remainder of the document is divided among three chapters. Chapter two outlines the general functionality of the application alongside the characteristics and constraints surrounding the application and relevant stakeholders. Additionally, future requirements and functionalities are layed out. \\ ~ \\
+Chapter three defines the technical specifications of the Android application required to perform its functionality. It consists of individual requirements and rationales to be implemented in order to achieve the intended result. \\ ~ \\
+Finally, chapter four specifies criteria used to evaluate the operation of the application based on the requirements outlined in chapter three. It outlines how the system should operate to fulfill its functionality.
+% End SubSection
+
+% End Section
+
+\section{Overall Description}
+\label{sec:overall_description}
+% Begin Section
+
+
+\subsection{Product Perspective}
+\label{sub:product_perspective}
+% Begin SubSection
+
+BookZilla is a mobile application designed to make the process of searching for a book straightforward and simple. BookZilla can use different properties of a book to discover similar or related books. The software is not self contained as it requires access to the Google Books API to retrieve books based off of search terms. However this product is not a product that is a component of a larger system since Google Books API is not dependent on BookZilla.
+
+% End SubSection
+
+\subsection{Product Functions}
+\label{sub:product_functions}
+% Begin SubSection
+This software is required to perform a variety of Functions. The major functions required include the following.
+\begin{enumerate}[1.]
+	\item The Software will search for a list of books based on a distinct and determined set of search terms. For example, a use could use the application to search for books related to the author J.K. Rowling and who's title contains the term Harry or Potter. 
+	
+	\item The software will search for a book that matches the users description of a book. The software will retrieve a list of books with a story related to the description of the book. The user is also able to search for related books based off of search terms. For example, if the user wanted to search for books with the related terms 'alien', 'space', and 'planet', the software would retrieve a list of related science fiction books.
+	
+	\item The software will provide the user with a detailed description of the book the user has selected from a retrieved list of books. The user will be able to get in depth information such as Author, Title, Publication Date, Publisher, Description, and ISBNs. 
+	
+\end{enumerate}
+% End SubSection
+
+\subsection{User Characteristics}
+\label{sub:user_characteristics}
+% Begin SubSection
+Ability use an Android smart-phone. The user must at-least be able to open an App on the Android system. Since all Android systems are similar, user's ability use one Android smart-phone can be applied across all Android smart-phones.\\\\
+\noindent Familiarity with the Android user interface. The user must be able to use basic components such as buttons, text.boxes.\\\\
+\noindent Some knowledge about the book(s) that they are searching for. The user must have enough knowledge of the book(s) to come up with a short description(s) of the book(s) that they are searching for. This short description will be used by Bookzilla to find matching books.
+% End SubSection
+
+\subsection{Constraints must be tied to requirements}
+\label{sub:constraints}
+% Begin SubSection
+\begin{itemize}
+    \item Bookzilla must be implemented for the Android operating system.
+    \item Final version of Bookzilla must be delivered on the April 6\textsuperscript{th}, 2018.
+    \item Power consumption should be kept to a minimum to conserve the phones' battery.
+    \item Communication over the internet must be kept to a minimum to conserve the limited bandwidth of mobile data.
+\end{itemize}
+% End SubSection
+
+\subsection{Assumptions and Dependencies}
+\label{sub:assumptions_and_dependencies}
+% Begin SubSection
+\begin{itemize}
+%	\item List each of the factors that affect the requirements stated in the SRS
+% We have to figure out the requirements for this section to be completed, will come back to it on monday's meeting - RAZAN 
+    \item 
+%	\item These factors are not design constraints on the software but are, rather, any changes to them that can affect the requirements in the SRS
+	\item The user must download the application onto their respective android device in order to use the Bookzila application.
+	\item The user is familiar with operating an android device.
+	\item The android device in which Bookzilla is to be deployed on is in working condition.
+\end{itemize}
+% End SubSection
+
+\subsection{Apportioning of Requirements}
+\label{sub:apportioning_of_requirements}
+% Begin SubSection
+\begin{itemize}
+	\item The ability of the user to create an account can be developed in version 2.0 or later.
+	\item The ability of the user to store previous searches can be available in version 2.0 or later. 
+	The ability to export search history will follow from the ability to create an account on Bookzilla.
+	\item Bookzilla version 1.0 will be available only in English. Languages other than English may be available in later versions.
+\end{itemize}
+% End SubSection
+% End Section
+
+\end{document}
