@@ -16,10 +16,7 @@
 # Android
 *.iml
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-/.idea/tasks.xml
-/.idea/gradle.xml
+*/.idea/*.xml
 /build
 /captures
 *.externalNativeBuild
