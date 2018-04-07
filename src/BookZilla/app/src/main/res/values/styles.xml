@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SearchButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/search_pressed</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
 </resources>
