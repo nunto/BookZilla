@@ -1,5 +1,6 @@
 package a3a04group5.bookzilla;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -32,7 +33,22 @@ public class SearchEntry extends AppCompatActivity implements View.OnClickListen
 
         //output = (TextView) findViewById(R.id.attributes_title);
 
-        search_button.setOnClickListener(this);
+        search_button.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        Intent intent = new Intent(SearchEntry.this, SearchParseActivity.class);
+                        intent.putExtra("author", author.getText());
+                        intent.putExtra("publisher", publisher.getText());
+                        intent.putExtra("publishedDate", publishedDate.getText());
+                        intent.putExtra("category", category.getText());
+                        intent.putExtra("description", description.getText());
+
+                        startActivity(intent);
+                    }
+                });
+
+
     }
 
     public void onClick(View v){
