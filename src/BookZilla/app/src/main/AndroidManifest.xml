@@ -16,8 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchEntry" />
-        <activity android:name=".SearchParseActivity"></activity>
+        <activity
+            android:name=".SearchEntry"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".SearchParseActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

@@ -12,9 +12,15 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            buildConfigField 'String', "APIKey", BookZilla_BooksAPIKey
+            resValue 'string', "api_key", BookZilla_BooksAPIKey
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "APIKey", BookZilla_BooksAPIKey
+            resValue 'string', "api_key", BookZilla_BooksAPIKey
         }
     }
 }
@@ -26,11 +32,38 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile files('libs/google-api-client-1.23.0.jar')
+    compile files('libs/google-api-client-android-1.23.0.jar')
+    compile files('libs/google-api-client-appengine-1.23.0.jar')
+    compile files('libs/google-api-client-gson-1.23.0.jar')
+    compile files('libs/google-api-client-jackson2-1.23.0.jar')
+    compile files('libs/google-api-client-java6-1.23.0.jar')
+    compile files('libs/google-api-client-servlet-1.23.0.jar')
+    compile files('libs/google-http-client-1.23.0.jar')
+    compile files('libs/google-http-client-android-1.23.0.jar')
+    compile files('libs/google-http-client-appengine-1.23.0.jar')
+    compile files('libs/google-http-client-gson-1.23.0.jar')
+    compile files('libs/google-http-client-jackson2-1.23.0.jar')
+    compile files('libs/google-http-client-jdo-1.23.0.jar')
+    compile files('libs/google-oauth-client-1.23.0.jar')
+    compile files('libs/google-oauth-client-appengine-1.23.0.jar')
+    compile files('libs/google-oauth-client-java6-1.23.0.jar')
+    compile files('libs/google-oauth-client-jetty-1.23.0.jar')
+    compile files('libs/google-oauth-client-servlet-1.23.0.jar')
+    compile files('libs/gson-2.1.jar')
+    compile files('libs/httpclient-4.0.1.jar')
+    compile files('libs/httpcore-4.0.1.jar')
+    compile files('libs/jackson-core-2.1.3.jar')
+    compile files('libs/jdo2-api-2.3-eb.jar')
+    compile files('libs/jetty-6.1.26.jar')
+    compile files('libs/jetty-util-6.1.26.jar')
+    compile files('libs/jsr305-1.3.9.jar')
+    compile files('libs/google-api-services-books-v1-rev95-1.23.0.jar')
 }

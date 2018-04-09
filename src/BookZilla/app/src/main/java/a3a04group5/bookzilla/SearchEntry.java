@@ -38,11 +38,11 @@ public class SearchEntry extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View v){
                         Intent intent = new Intent(SearchEntry.this, SearchParseActivity.class);
-                        intent.putExtra("author", author.getText());
-                        intent.putExtra("publisher", publisher.getText());
-                        intent.putExtra("publishedDate", publishedDate.getText());
-                        intent.putExtra("category", category.getText());
-                        intent.putExtra("description", description.getText());
+                        intent.putExtra("author", author.getText().toString());
+                        intent.putExtra("publisher", publisher.getText().toString());
+                        intent.putExtra("publishedDate", publishedDate.getText().toString());
+                        intent.putExtra("category", category.getText().toString());
+                        intent.putExtra("description", description.getText().toString());
 
                         startActivity(intent);
                     }
