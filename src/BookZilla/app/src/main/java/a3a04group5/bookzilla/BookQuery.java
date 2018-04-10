@@ -36,7 +36,7 @@ public class BookQuery extends AsyncTask <String, Void, Volumes>{
             volumes = volumesList.execute();
 
         } catch(IOException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
 
@@ -49,8 +49,7 @@ public class BookQuery extends AsyncTask <String, Void, Volumes>{
 
     @Override
     protected void onPostExecute(Volumes volumes) {
-        System.out.println(volumes);
-
+        // Allowing the volumes to be retrieved
         listener.onTaskCompleted(volumes);
     }
 }

@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint='E.g. "Adventure" or "Fiction"'
+            android:hint="@string/category_hint"
             android:inputType="textNoSuggestions|textPersonName" />
 
         <TextView

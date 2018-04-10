@@ -30,7 +30,7 @@ public class SearchEntry extends AppCompatActivity {
         category = (EditText) findViewById(R.id.category);
         description = (EditText) findViewById(R.id.description);
 
-
+        // Passes extras to Search Parse
         search_button.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
@@ -45,6 +45,11 @@ public class SearchEntry extends AppCompatActivity {
                 });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SearchEntry.this, MainActivity.class));
     }
 
 }

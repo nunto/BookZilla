@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/background"
+        android:clickable="true"
         android:padding="25sp"
         />
 </RelativeLayout>

@@ -84,7 +84,7 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
     }
 
 
-
+    // After query has been executed
     @Override
     public void onTaskCompleted(Volumes volumes) {
         results.add(volumes);
@@ -112,9 +112,18 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
             else {
                 tmpUrl = "x";
             }
+            // Checking results for null and adding if they are okay
             urls.add(tmpUrl);
-            titles.add(volumeInfo.getTitle());
-            authors.add(volumeInfo.getAuthors().toString());
+            if (volumeInfo.getTitle() != null) {
+                titles.add(volumeInfo.getTitle());
+            } else {
+                titles.add("No title listed");
+            }
+            if (volumeInfo.getAuthors() != null) {
+                authors.add(volumeInfo.getAuthors().toString());
+            } else {
+                authors.add("No authors listed");
+            }
             if (volumeInfo.getAverageRating() != null) {
                 ratings.add(volumeInfo.getAverageRating());
             } else {
@@ -123,11 +132,11 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
             if (volumeInfo.getCategories() != null) {
                 categories.add(volumeInfo.getCategories().toString());
             }   else {
-                categories.add("Unlisted.");
+                categories.add("Unlisted");
             } if (volumeInfo.getInfoLink() != null) {
                 moreinfo.add(volumeInfo.getInfoLink());
             } else {
-                moreinfo.add("No book link available.");
+                moreinfo.add("No book link available");
             }
 
         }
@@ -153,5 +162,10 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
         intent.putExtra("totalResults", volumes.getTotalItems());
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SearchParseActivity.this, SearchEntry.class));
     }
 }

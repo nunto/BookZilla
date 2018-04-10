@@ -36,7 +36,6 @@ import java.util.Arrays;
 
 public class ResultsActivity extends AppCompatActivity {
 
-    private PopupWindow popupWindow;
     private ConstraintLayout cLayout;
     private TextView popupText;
     private String[] titles;
@@ -59,18 +58,13 @@ public class ResultsActivity extends AppCompatActivity {
         categories = extras.getStringArray("categories");
         moreInfo = extras.getStringArray("moreinfo");
 
-        System.out.println("-----------------------\nArrays Length:\n--------------------------");
-        System.out.println(Arrays.toString(titles));
-        System.out.println(Arrays.toString(authors));
-        System.out.println(Arrays.toString(ratings));
-        System.out.println(Arrays.toString(categories));
-        System.out.println(Arrays.toString(moreInfo));
         // Initializing LinearLayout used for scrolling images
         LinearLayout layout = (LinearLayout) findViewById(R.id.imageLinear);
         try {
             JSONObject books = new JSONObject(volumes);
             JSONArray booksArray = books.getJSONArray("items");
 
+            // Creating each book object with an image
             for (int i = 0; i < booksArray.length(); i++) {
                 final ImageView imageView = new ImageView(this);
 
@@ -87,6 +81,7 @@ public class ResultsActivity extends AppCompatActivity {
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 layout.addView(imageView);
 
+                // Allowing books to be clickable
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -104,15 +99,21 @@ public class ResultsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ResultsActivity.this, SearchEntry.class);
+        startActivity(intent);
+    }
+    // Popup returning information about the book
     private void bookSelectPopup(View V, final int id) {
 
         cLayout = (ConstraintLayout) findViewById(R.id.constraint_layout_results);
         // Initializing LayoutInflater to inflate popup_layout as a popup
         LayoutInflater inflater = (LayoutInflater) ResultsActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_layout, null);
-
-        popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
+        final View popupView = inflater.inflate(R.layout.popup_layout, null);
+        // Creating popup
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(true);
         if (Build.VERSION.SDK_INT >= 21) {
             popupWindow.setElevation(5.0f);
         }
@@ -121,11 +122,12 @@ public class ResultsActivity extends AppCompatActivity {
         ImageButton done = (ImageButton) popupView.findViewById(R.id.popup_done);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View popupView) {
                 // Close popup
                 popupWindow.dismiss();
             }
         });
+        // Initializing popup
         popupWindow.showAtLocation(cLayout, Gravity.CENTER, 0, 0);
         String textInfo = "Title: " + titles[id] + "\nAuthor(s): " + authors[id] + "\nCategories: "
                 + categories[id] +"\nRating: " + ratings[id] +"\nMore Info";
@@ -140,14 +142,16 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
+                ds.setColor(Color.rgb(92, 196, 234));
                 ds.setUnderlineText(false);
             }
         };
+
         result_info.setSpan(clickableSpan, textInfo.indexOf("More Info"), textInfo.indexOf("More Info") + 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         ((TextView) popupWindow.getContentView().findViewById(R.id.book_info)).setText(result_info);
         ((TextView) popupWindow.getContentView().findViewById(R.id.book_info)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView) popupWindow.getContentView().findViewById(R.id.book_info)).setHighlightColor(Color.rgb(92, 196, 234));
+        ((TextView) popupWindow.getContentView().findViewById(R.id.book_info)).setHighlightColor(Color.TRANSPARENT);
     }
 }
 
@@ -159,7 +163,7 @@ class DownloadImage extends AsyncTask<String, Void, Bitmap> {
     public DownloadImage(ImageView bmImage) {
         this.bmImage = bmImage;
     }
-
+    // Downloading book image
     protected Bitmap doInBackground(String... urls) {
         String urlDisplay = urls[0];
         Bitmap mIcon11 = null;
@@ -172,8 +176,9 @@ class DownloadImage extends AsyncTask<String, Void, Bitmap> {
         }
         return mIcon11;
     }
-
+    // Sets the bitmap image back to the ImageView
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
     }
 }
+

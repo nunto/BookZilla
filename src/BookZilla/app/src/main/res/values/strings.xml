@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">BookZilla</string>
-    <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris egestas diam at mauris lobortis, sit amet gravida purus tincidunt. Nulla lorem ex, dignissim vel malesuada vestibulum, suscipit vitae nibh. Proin eu ante viverra, tempor nulla eu, accumsan ex. Nam feugiat vulputate felis quis bibendum. Sed bibendum felis id libero varius, vel sagittis justo blandit. Cras feugiat commodo nisl, sed ornare mauris mattis eu. Maecenas sit amet leo sed lorem rhoncus posuere sit amet sit amet ex. Donec sollicitudin nibh non diam molestie, ut fermentum felis ullamcorper. Aliquam sed urna in nisl tempor vehicula sit amet finibus ligula. Fusce et orci dictum massa finibus malesuada ut et lectus.</string>
+    <string name="app_description">Welcome! BookZilla is an app designed to aid you in finding books that you can\'t quite remember the name of. To get started, fill in any fields you can on the next page and select search. A scrollable list of books related to your search will appear; you may select a book to find out more about it. Please note a rating of -1, means there is no rating available.</string>
     <string name="btn_search">Search</string>
     <string name="result_header">Results</string>
     <string name="publisher">Publisher</string>
