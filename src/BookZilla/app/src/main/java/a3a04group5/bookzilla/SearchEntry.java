@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class SearchEntry extends AppCompatActivity implements View.OnClickListener {
+public class SearchEntry extends AppCompatActivity {
 
     private Button search_button;
     //private TextView output;
@@ -27,11 +27,9 @@ public class SearchEntry extends AppCompatActivity implements View.OnClickListen
         search_button = (Button) findViewById(R.id.search_button);
         author = (EditText) findViewById(R.id.author);
         publisher = (EditText) findViewById(R.id.publisher);
-        publishedDate = (EditText) findViewById(R.id.publishedDate);
         category = (EditText) findViewById(R.id.category);
         description = (EditText) findViewById(R.id.description);
 
-        //output = (TextView) findViewById(R.id.attributes_title);
 
         search_button.setOnClickListener(
                 new View.OnClickListener(){
@@ -40,10 +38,8 @@ public class SearchEntry extends AppCompatActivity implements View.OnClickListen
                         Intent intent = new Intent(SearchEntry.this, SearchParseActivity.class);
                         intent.putExtra("author", author.getText().toString());
                         intent.putExtra("publisher", publisher.getText().toString());
-                        intent.putExtra("publishedDate", publishedDate.getText().toString());
                         intent.putExtra("category", category.getText().toString());
                         intent.putExtra("description", description.getText().toString());
-
                         startActivity(intent);
                     }
                 });
@@ -51,23 +47,4 @@ public class SearchEntry extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void onClick(View v){
-        /*THIS IS TO TEST WHETHER THE INPUT FIELDS DISPLAY CORRECTLY
-        if (v.getId() == search_button.getId()){
-            text = author.getText().toString();
-            output.setText(text);
-        }
-        */
-
-
-    }
-
-
-    public void buttonOnClick(View v) {
-
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.TOP| Gravity.LEFT, 0, 0) ;
-        toast.makeText(SearchEntry.this, author.getText(), toast.LENGTH_SHORT).show();
-
-    }
 }

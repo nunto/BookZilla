@@ -29,7 +29,7 @@ public class BookQuery extends AsyncTask <String, Void, Volumes>{
         Volumes volumes = null;
         try {
             // Setting then executing query
-            System.out.println("QUERY IS HERE:" + query[0]);
+            System.out.println("Query:" + query[0]);
             volumesList = books.volumes().list(query[0]);
             volumesList.setMaxResults(maxResults);
             volumesList.setKey(API_KEY);
@@ -42,10 +42,8 @@ public class BookQuery extends AsyncTask <String, Void, Volumes>{
 
         // Checking if any matching books were found
         if ( volumes == null || volumes.getItems() == null || volumes.getTotalItems() == 0 ) {
-            System.out.println("Please don't tell me we made it here");
             System.exit(0);
         }
-        System.out.println("We here boys");
         return volumes;
     }
 

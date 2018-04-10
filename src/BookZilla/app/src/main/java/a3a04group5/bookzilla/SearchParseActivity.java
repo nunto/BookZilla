@@ -4,19 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Pair;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
+import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volumes;
 
 import org.json.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchParseActivity extends AppCompatActivity implements OnTaskCompleted {
 
@@ -82,9 +87,71 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
 
     @Override
     public void onTaskCompleted(Volumes volumes) {
-        System.out.println("MADE IT HERE---------------------------!");
-        System.out.println(volumes.isEmpty());
         results.add(volumes);
-        System.out.println("Success!");
+        Intent intent = new Intent(SearchParseActivity.this, ResultsActivity.class);
+        List<String> urls = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+        List<String> authors = new ArrayList<>();
+        List<Double> ratings = new ArrayList<>();
+        List<String> categories = new ArrayList<>();
+        List<String> moreinfo = new ArrayList<>();
+        String tmpUrl = "";
+        for (Volume volume : volumes.getItems()) {
+            Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+            if (volumeInfo.getImageLinks() != null) {
+                if (volumeInfo.getImageLinks().getLarge() != null) {
+                    tmpUrl= (volumeInfo.getImageLinks().getLarge());
+                }
+                else if (volumeInfo.getImageLinks().getMedium() != null) {
+                    tmpUrl = volumeInfo.getImageLinks().getMedium();
+                }
+                else if (volumeInfo.getImageLinks().getThumbnail() != null) {
+                    tmpUrl = volumeInfo.getImageLinks().getThumbnail();
+                }
+            }
+            else {
+                tmpUrl = "x";
+            }
+            urls.add(tmpUrl);
+            titles.add(volumeInfo.getTitle());
+            authors.add(volumeInfo.getAuthors().toString());
+            if (volumeInfo.getAverageRating() != null) {
+                ratings.add(volumeInfo.getAverageRating());
+            } else {
+                ratings.add(-1.0);
+            }
+            if (volumeInfo.getCategories() != null) {
+                categories.add(volumeInfo.getCategories().toString());
+            }   else {
+                categories.add("Unlisted.");
+            } if (volumeInfo.getInfoLink() != null) {
+                moreinfo.add(volumeInfo.getInfoLink());
+            } else {
+                moreinfo.add("No book link available.");
+            }
+
+        }
+        // Turning lists into arrays so they can be sent as extras
+        String[] resultUrls = urls.toArray(new String[0]);
+        String[] resultTitles = titles.toArray(new String[0]);
+        String[] resultAuthors = authors.toArray(new String[0]);
+        double[] resultRatings = new double[ratings.size()];
+        for (int i = 0; i < ratings.size(); i++) {
+            resultRatings[i] = (double) ratings.get(i);
+        }
+        String[] resultCategories = categories.toArray(new String[0]);
+        String[] resultMoreInfo = moreinfo.toArray(new String[0]);
+
+        // Sending extras along to the next activity to avoid having to parse JSON again
+        intent.putExtra("urls", resultUrls);
+        intent.putExtra("titles", resultTitles);
+        intent.putExtra("authors", resultAuthors);
+        intent.putExtra("ratings", resultRatings);
+        intent.putExtra("categories", resultCategories);
+        intent.putExtra("moreinfo", resultMoreInfo);
+        intent.putExtra("volumes", volumes.toString());
+        intent.putExtra("totalResults", volumes.getTotalItems());
+        startActivity(intent);
+
     }
 }

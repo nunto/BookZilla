@@ -2,4 +2,13 @@
     <string name="app_name">BookZilla</string>
     <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris egestas diam at mauris lobortis, sit amet gravida purus tincidunt. Nulla lorem ex, dignissim vel malesuada vestibulum, suscipit vitae nibh. Proin eu ante viverra, tempor nulla eu, accumsan ex. Nam feugiat vulputate felis quis bibendum. Sed bibendum felis id libero varius, vel sagittis justo blandit. Cras feugiat commodo nisl, sed ornare mauris mattis eu. Maecenas sit amet leo sed lorem rhoncus posuere sit amet sit amet ex. Donec sollicitudin nibh non diam molestie, ut fermentum felis ullamcorper. Aliquam sed urna in nisl tempor vehicula sit amet finibus ligula. Fusce et orci dictum massa finibus malesuada ut et lectus.</string>
     <string name="btn_search">Search</string>
+    <string name="result_header">Results</string>
+    <string name="publisher">Publisher</string>
+    <string name="author">Author</string>
+    <string name="attributes">Attributes</string>
+    <string name="category">Category</string>
+    <string name="category_hint">E.g. "Adventure" or "Science"</string>
+    <string name="desc">Description</string>
+    <string name="desc_hint">Keywords</string>
+    <string name="loading">Loading...</string>
 </resources>

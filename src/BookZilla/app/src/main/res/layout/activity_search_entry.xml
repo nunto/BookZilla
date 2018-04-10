@@ -12,23 +12,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:layout_marginTop="45dp">
 
         <TextView
             android:layout_margin="8dp"
             android:id="@+id/attributes_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Attributes" />
+            android:text="@string/attributes" />
 
         <EditText
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Author"
+            android:hint="@string/author"
             android:inputType="textPersonName" />
 
         <EditText
@@ -36,16 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Publisher"
+            android:hint="@string/publisher"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/publishedDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint='D.O.P E.g. "1998"'
-            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/category_title"
@@ -54,7 +48,7 @@
             android:layout_below="@+id/linearLayout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="13dp"
-            android:text="Category"
+            android:text="@string/category"
             android:visibility="visible" />
 
         <EditText
@@ -62,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint='E.g. "Adventure" or "Fiction" '
+            android:hint='E.g. "Adventure" or "Fiction"'
             android:inputType="textNoSuggestions|textPersonName" />
 
         <TextView
@@ -72,14 +66,14 @@
             android:layout_alignStart="@+id/linearLayout"
             android:layout_below="@+id/linearLayout"
             android:layout_marginTop="25dp"
-            android:text="Description" />
+            android:text="@string/desc" />
 
         <EditText
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/desc_hint"
             android:inputType="textPersonName" />
 
     </LinearLayout>
@@ -91,6 +85,6 @@
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
-        android:text="Search!" />
+        android:text="@string/btn_search" />
 
 </RelativeLayout>
