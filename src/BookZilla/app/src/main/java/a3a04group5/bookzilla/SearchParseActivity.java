@@ -43,10 +43,6 @@ public class SearchParseActivity extends AppCompatActivity implements OnTaskComp
 
         BookQuery bookQuery = new BookQuery();
         bookQuery.listener = this;
-        BookQuery bookQuery_category = new BookQuery();
-        BookQuery bookQuery_attribute = new BookQuery();
-        BookQuery bookQuery_desc = new BookQuery();
-
         // Strings for each experts request
         String query = "";
         String categoryQuery = "";
